@@ -1,0 +1,30 @@
+def max_weeks_employee_can_work(num_projects, project_modules):
+  """
+  Determines the maximum number of weeks the employee can work on projects following the above-mentioned rules.
+
+  Args:
+    num_projects: The number of projects.
+    project_modules: The number of modules for each project.
+
+  Returns:
+    The maximum number of weeks the employee can work on the projects.
+  """
+
+  max_weeks = 0
+  prev_project = -1
+  for i in range(num_projects):
+    if project_modules[i] > 0:
+      if prev_project != -1:
+        project_modules[i] -= 1
+      else:
+        max_weeks += 1
+      prev_project = i
+    else:
+      prev_project = -1
+  return max_weeks
+
+
+if __name__ == "__main__":
+  num_projects = 3
+  project_modules = [7, 2, 3]
+  print(max_weeks_employee_can_work(num_projects, project_modules))
